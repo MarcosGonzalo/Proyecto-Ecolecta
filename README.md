@@ -1,7 +1,8 @@
 # 🌱 Proyecto EcoColecta
 
 Plataforma comunitaria para gestionar puntos de reciclaje del municipio.
-cambio hecho por marcos ----
+cambio hecho por marcos  & RIchard
+
 ## Fase 1: Investigación Inicial
 
 ### 1. Control de versiones: Centralizado (SVN) vs. Distribuido (Git)
