@@ -1,0 +1,34 @@
+name: CI - Verificacion EcoColecta
+
+# 1. CUÁNDO SE ACTIVA: En cada push o pull_request hacia la rama main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. TAREAS A EJECUTAR (JOBS)
+jobs:
+  validar-proyecto:
+    # Alquilamos una máquina virtual con Ubuntu Linux en la nube de GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso A: El robot descarga el código de tu repositorio
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      # Paso B: Verificamos que la estructura base obligatoria exista
+      - name: Verificar archivos base (HTML, CSS, JS, README)
+        run: |
+          echo "Verificando archivos del proyecto EcoColecta..."
+          test -f index.html && echo "✅ index.html encontrado"
+          test -f styles.css && echo "✅ styles.css encontrado"
+          test -f app.js && echo "✅ app.js encontrado"
+          test -f README.md && echo "✅ README.md encontrado"
+
+      # Paso C: Validamos la sintaxis de JavaScript usando Node.js integrado
+      - name: Validar sintaxis de app.js
+        run: |
+          node --check app.js
+          echo "✅ Sintaxis de JavaScript validada correctamente"
